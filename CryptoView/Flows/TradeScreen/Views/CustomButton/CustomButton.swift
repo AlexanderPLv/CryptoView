@@ -50,6 +50,9 @@ final class CustomButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(title: String) {
+        titleLabel.text = title
+    }
 }
 
 private extension CustomButton {
@@ -73,7 +76,7 @@ private extension CustomButton {
     private func addOnTapGestureRecognizer() {
         let tap = UITapGestureRecognizer(
             target: self,
-            action: #selector(self.handleTap(_:))
+            action: #selector(handleTap)
         )
         self.addGestureRecognizer(tap)
     }

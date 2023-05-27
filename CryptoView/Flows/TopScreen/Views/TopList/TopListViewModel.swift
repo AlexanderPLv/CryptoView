@@ -28,7 +28,7 @@ final class TopListViewModel {
     
     init() {
         updateTimer = Timer.scheduledTimer(
-            withTimeInterval: 3 * 60,
+            withTimeInterval: 5,
             repeats: true,
             block: { [weak self] timer in
                 self?.updateData()

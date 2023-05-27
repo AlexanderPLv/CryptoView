@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import WebKit
 
 final class OnboardingScreen: UIViewController {
     
@@ -20,9 +21,12 @@ final class OnboardingScreen: UIViewController {
     }()
     
     private let progressView = ProgressView(cornerRadius: 12.0)
-    var progressValue: Float = 0.0
+    private let webView: WKWebView
     
-    init() {
+    init(
+        webView: WKWebView
+    ) {
+        self.webView = webView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,10 +34,26 @@ final class OnboardingScreen: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        webView.removeObserver(self, forKeyPath: "estimatedProgress")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        perform(#selector(updateProgress), with: nil, afterDelay: 0.1)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        
+        perform(#selector(loadwidget), with: nil, afterDelay: 0.1)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            progressView.value = Float(webView.estimatedProgress)
+            if webView.estimatedProgress >= 1 {
+                progressView.isHidden = true
+                askPushNotificationsPermissions()
+            }
+        }
     }
 }
 
@@ -51,14 +71,10 @@ private extension OnboardingScreen {
         }
     }
     
-    @objc func updateProgress() {
-        progressValue += 0.1
-        self.progressView.value = progressValue
-        if !(progressValue >= 1) {
-            perform(#selector(updateProgress), with: nil, afterDelay: 0.1)
-        } else {
-            progressView.isHidden = true
-            askPushNotificationsPermissions()
+    @objc func loadwidget() {
+        let pair = CurrencyPair.allCases.first!
+        DispatchQueue.main.async {
+            self.webView.loadHTMLString(HTML.string(with: pair.requestSymbol), baseURL: nil)
         }
     }
     

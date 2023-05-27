@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let controller = window?.rootViewController as? UINavigationController
         else { return UINavigationController() }
         return controller
-     //   UINavigationController.buildAsRootForWindow(window)
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

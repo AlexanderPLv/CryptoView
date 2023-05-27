@@ -8,10 +8,12 @@
 import UIKit
 import Combine
 import SnapKit
+import WebKit
 
 final class TradeScreen: KeyboardViewController {
     
-    var onSelectPairScreen: CompletionBlock?
+    var onSelectPairScreen: ((CurrencyPair) -> ())?
+    var showSuccessAlert: CompletionBlock?
     private var bag = [AnyCancellable]()
     
     private let titleLabel: UILabel = {
@@ -25,34 +27,39 @@ final class TradeScreen: KeyboardViewController {
     }()
     
     private let balanceView: BalanceView
-    private let webView = UIView()
-    private let sellButton = CustomButton(title: "Sell", color: Color.Common.buttonRed)
+    private let webView: WKWebView
+    private let sellButton = CustomButton(title: "Sell", color: Color.Common.red)
     private let buyButton = CustomButton(title: "Buy", color: Color.Common.lightGreen)
     private let currencyPairButton: CustomButton
     private let timerView: CounterView
     private let investmentView: CounterView
-    
     private var bottomSheetConstraint: Constraint?
     
     private let viewModel: TradeScreenViewModel
+    private let investmentViewViewModel: InvestmentCounterViewModel
+    private let timerViewViewModel: TimerCounterViewModel
     
     init(
         viewModel: TradeScreenViewModel,
-        timerObserver: TextFieldObserver,
-        investmentObserver: TextFieldObserver
+        webView: WKWebView
     ) {
         self.viewModel = viewModel
-        self.timerView = CounterView(title: "Timer")
-        self.investmentView = CounterView(title: "Investment")
-        self.balanceView = BalanceView(amount: viewModel.getBalance())
+        self.timerViewViewModel = TimerCounterViewModel(title: "Timer")
+        self.timerView = CounterView(
+            viewModel: timerViewViewModel
+        )
+        self.investmentViewViewModel = InvestmentCounterViewModel(title: "Investment", step: 100)
+        self.investmentView = CounterView(
+            viewModel: investmentViewViewModel
+        )
+        self.balanceView = BalanceView()
         self.currencyPairButton = CustomButton(
-            title: viewModel.currentCurrencyPair(),
+            title: viewModel.currentCurrencyPair().rawValue,
             titleFont: .boldSystemFont(ofSize: 16.0),
             titleAligment: .center,
             color: Color.Common.darkGray,
             hideArrow: false)
-        timerObserver.addObservable(timerView.textField)
-        investmentObserver.addObservable(investmentView.textField)
+        self.webView = webView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,8 +71,15 @@ final class TradeScreen: KeyboardViewController {
         super.viewDidLoad()
         setupViews()
         bind()
+        viewModel.setInitialValues()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        webView.scrollView.pinchGestureRecognizer?.isEnabled = false
+        webView.scrollView.panGestureRecognizer.isEnabled = false
+    }
+
     override func keyboardWasShown(notification: Notification) {
         guard let info = notification.userInfo,
               let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size,
@@ -107,7 +121,11 @@ private extension TradeScreen {
             make.top.equalTo(titleLabel.snp.bottom).offset(15.0)
             make.leading.trailing.equalToSuperview().inset(30.0)
         }
-        
+        setupBottomSheetlayout()
+        setupWebViewLayout()
+    }
+    
+    func setupBottomSheetlayout() {
         let buttonStack = UIStackView(arrangedSubviews: [sellButton, buyButton])
         buttonStack.axis = .horizontal
         buttonStack.distribution = .fillEqually
@@ -118,45 +136,97 @@ private extension TradeScreen {
         counterStack.distribution = .fillEqually
         counterStack.spacing = 10.0
         
-        let bottomSheetStack = UIStackView(arrangedSubviews: [currencyPairButton, counterStack, buttonStack])
+        let bottomSheetBackgroundView = UIView()
+        bottomSheetBackgroundView.backgroundColor = Color.Common.background
+        
+        let bottomSheetStack = UIStackView(arrangedSubviews: [
+            currencyPairButton, counterStack, buttonStack
+        ])
         bottomSheetStack.axis = .vertical
         bottomSheetStack.spacing = 10.0
-        view.addSubview(bottomSheetStack)
+        
+        bottomSheetBackgroundView.addSubview(bottomSheetStack)
         bottomSheetStack.snp.makeConstraints { make in
-            bottomSheetConstraint = make.bottom.equalToSuperview().inset(12.0).constraint
+            make.top.equalToSuperview().inset(15.0)
             make.leading.trailing.equalToSuperview().inset(30.0)
+            make.bottom.equalToSuperview().inset(12.0)
+        }
+        
+        view.addSubview(bottomSheetBackgroundView)
+        bottomSheetBackgroundView.snp.makeConstraints { make in
+            bottomSheetConstraint = make.bottom.equalToSuperview().constraint
+            make.leading.trailing.equalToSuperview()
         }
         bottomSheetConstraint?.activate()
+    }
+    
+    func setupWebViewLayout() {
+        view.insertSubview(webView, at: 1)
+        let guide = view.safeAreaLayoutGuide
+        var bottomPadding: CGFloat = 0
         
-        view.addSubview(webView)
-        webView.backgroundColor = .yellow
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            bottomPadding = window.safeAreaInsets.bottom
+        }
+        let height = guide.layoutFrame.height - (455 + bottomPadding)
         webView.snp.makeConstraints { make in
+            make.height.equalTo(height)
             make.top.equalTo(balanceView.snp.bottom).offset(25.0)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(bottomSheetStack.snp.top).offset(-15.0)
+            make.leading.trailing.equalToSuperview().inset(10.0)
+        }
+        webView.layer.borderColor = Color.Common.background.cgColor
+        webView.layer.borderWidth = 5.0
+        let bottomBorder = UIView()
+        bottomBorder.backgroundColor = Color.Common.background
+        webView.addSubview(bottomBorder)
+        bottomBorder.snp.makeConstraints { make in
+            make.height.equalTo(20.0)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     func bind() {
         sellButton.tapped
             .sink { [weak self] _ in
-                print("tapped")
+                self?.viewModel.sell()
             }.store(in: &bag)
         buyButton.tapped
             .sink { [weak self] _ in
-                print("tapped")
+                self?.viewModel.sell()
             }.store(in: &bag)
         currencyPairButton.tapped
             .sink { [weak self] _ in
-                self?.onSelectPairScreen?()
+                guard let self = self else { return }
+                self.onSelectPairScreen?(self.viewModel.currentCurrencyPair())
             }.store(in: &bag)
-        timerView.tapped
-            .sink { [weak self] counter in
-                self?.viewModel.changeTimerValue(counter)
+        viewModel.balance
+            .subscribe(balanceView.currentBalance)
+            .store(in: &bag)
+        viewModel.success
+            .sink { [weak self] _ in
+                self?.showSuccessAlert?()
             }.store(in: &bag)
-        investmentView.tapped
-            .sink { [weak self] counter in
-                self?.viewModel.changeInvestmentAmount(counter)
+        viewModel.balance
+            .subscribe(investmentViewViewModel.balance)
+            .store(in: &bag)
+        viewModel.updateTimer
+            .subscribe(timerViewViewModel.inputTimerValue)
+            .store(in: &bag)
+        viewModel.updateInvestment
+            .subscribe(investmentViewViewModel.inputInvestmentValue)
+            .store(in: &bag)
+        investmentViewViewModel.outputInvestmentValue
+            .sink { [weak self] value in
+                self?.viewModel.setInvestmentAmount(value)
             }.store(in: &bag)
+    }
+}
+
+extension TradeScreen: PairSelectionDelegate {
+    func didSelectPair(_ pair: CurrencyPair) {
+        DispatchQueue.main.async {
+            self.webView.loadHTMLString(HTML.string(with: pair.requestSymbol), baseURL: nil)
+        }
     }
 }

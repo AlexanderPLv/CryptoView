@@ -9,8 +9,6 @@ import UIKit
 
 final class TextFieldInvestmentFormatter: TextFieldFormatter {
     
-    var placeholder = "1,000"
-    
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.groupingSeparator = ","
@@ -18,24 +16,25 @@ final class TextFieldInvestmentFormatter: TextFieldFormatter {
         return formatter
     }()
     
-    func format(_ text: String, with newValue: Int) -> Int {
-        let numbersString = text.components(
+    func format(_ text: String) -> String? {
+        if text.isEmpty {
+            return "0"
+        }
+        let string = text.components(
             separatedBy: CharacterSet.decimalDigits.inverted
         ).joined()
-        guard let num = Int(numbersString) else { return 0 }
-        return num + newValue
-    }
-    
-    func format(_ text: String) -> String {
-        let numbersString = text.components(
-            separatedBy: CharacterSet.decimalDigits.inverted
-        ).joined()
-        guard let numbers = Int(numbersString),
-              let result = numberFormatter.string(for: numbers) else { return text}
+        guard let result = numberFormatter.string(for: Int(string)) else { return nil }
         return result
     }
 
     func fillEndWithMask(_ string: String) -> String {
         return string
+    }
+    
+    func removeMask(_ text: String) -> String {
+        let result = text.components(
+            separatedBy: CharacterSet.decimalDigits.inverted
+        ).joined()
+        return result
     }
 }

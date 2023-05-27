@@ -7,8 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class BalanceView: UIView {
+    
+    var currentBalance = PassthroughSubject<Int, Never>()
+    var cancellable: AnyCancellable?
     
     private let titleLabel: UILabel = {
         let view = UILabel()
@@ -29,10 +33,10 @@ final class BalanceView: UIView {
         return view
     }()
     
-    init(amount: Int) {
-        self.amountLabel.text = amount.formattedWithSeparator
+    init() {
         super.init(frame: .zero)
         setupView()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -42,6 +46,14 @@ final class BalanceView: UIView {
 }
 
 private extension BalanceView {
+    
+    func bind() {
+        cancellable = currentBalance
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.amountLabel.text = value.formattedWithSeparator
+            }
+    }
     
     func setupView() {
         backgroundColor = Color.Common.darkGray

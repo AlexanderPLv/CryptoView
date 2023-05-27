@@ -32,16 +32,22 @@
 		C90931C72A18B5E000F882A4 /* TradeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90931C62A18B5E000F882A4 /* TradeCoordinator.swift */; };
 		C90931CA2A18BA0500F882A4 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90931C92A18BA0500F882A4 /* OnboardingScreen.swift */; };
 		C90931CD2A18BA7A00F882A4 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90931CC2A18BA7A00F882A4 /* MainTabBarViewController.swift */; };
+		C90B7C432A1CFA3500A58471 /* SelectPairCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B7C422A1CFA3500A58471 /* SelectPairCell.swift */; };
+		C90B7C462A1CFA7F00A58471 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B7C452A1CFA7F00A58471 /* CurrencyPair.swift */; };
 		C92BE8A92A1B240D0077774F /* Formatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8A82A1B240D0077774F /* Formatter+Ext.swift */; };
 		C92BE8AB2A1B242A0077774F /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8AA2A1B242A0077774F /* Int+Ext.swift */; };
 		C92BE8AD2A1B24A30077774F /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8AC2A1B24A30077774F /* CounterView.swift */; };
 		C92BE8B02A1B40040077774F /* TextFieldTimerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8AF2A1B40040077774F /* TextFieldTimerFormatter.swift */; };
 		C92BE8B42A1B44FC0077774F /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8B32A1B44FC0077774F /* KeyboardViewController.swift */; };
-		C92BE8B62A1B5FCF0077774F /* TextFieldObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8B52A1B5FCF0077774F /* TextFieldObserver.swift */; };
+		C92BE8B62A1B5FCF0077774F /* InvestmentCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8B52A1B5FCF0077774F /* InvestmentCounterViewModel.swift */; };
 		C92BE8B92A1B75CC0077774F /* SelectPairScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8B82A1B75CC0077774F /* SelectPairScreen.swift */; };
 		C92BE8BC2A1B8AE00077774F /* TextFieldInvestmentFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE8BB2A1B8AE00077774F /* TextFieldInvestmentFormatter.swift */; };
+		C933DFB32A1F4CE500210177 /* KeyboardInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C933DFB22A1F4CE500210177 /* KeyboardInputValidator.swift */; };
 		C93421D32A18FB0B0002DF6B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C93421D22A18FB0B0002DF6B /* SnapKit */; };
 		C93421D52A18FFA30002DF6B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93421D42A18FFA30002DF6B /* ProgressView.swift */; };
+		C94BA3182A1E4CDA007F2939 /* HTMLString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94BA3172A1E4CDA007F2939 /* HTMLString.swift */; };
+		C952526F2A204BC0001E9C10 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952526E2A204BC0001E9C10 /* UserModel.swift */; };
+		C95252762A206998001E9C10 /* TimerCounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95252752A206998001E9C10 /* TimerCounterViewModel.swift */; };
 		C9D5DF192A19B24400D4921A /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D5DF102A19B24400D4921A /* Inter-Medium.ttf */; };
 		C9D5DF1A2A19B24400D4921A /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D5DF112A19B24400D4921A /* Inter-ExtraBold.ttf */; };
 		C9D5DF1B2A19B24400D4921A /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9D5DF122A19B24400D4921A /* Inter-SemiBold.ttf */; };
@@ -68,6 +74,9 @@
 		C9D5DF492A1A53D600D4921A /* TradeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5DF482A1A53D600D4921A /* TradeScreenViewModel.swift */; };
 		C9D5DF4B2A1A56EC00D4921A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5DF4A2A1A56EC00D4921A /* CustomButton.swift */; };
 		C9D5DF4D2A1A5AF600D4921A /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5DF4C2A1A5AF600D4921A /* UIView+Ext.swift */; };
+		C9EF55722A21D294000C409F /* TimerParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EF55712A21D294000C409F /* TimerParser.swift */; };
+		C9FD75A52A1D79BF00A750D8 /* PairCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD75A42A1D79BF00A750D8 /* PairCellViewModel.swift */; };
+		C9FD75A92A1D9E4200A750D8 /* widget.html in Resources */ = {isa = PBXBuildFile; fileRef = C9FD75A82A1D9E4200A750D8 /* widget.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,15 +107,21 @@
 		C90931C62A18B5E000F882A4 /* TradeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeCoordinator.swift; sourceTree = "<group>"; };
 		C90931C92A18BA0500F882A4 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		C90931CC2A18BA7A00F882A4 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		C90B7C422A1CFA3500A58471 /* SelectPairCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPairCell.swift; sourceTree = "<group>"; };
+		C90B7C452A1CFA7F00A58471 /* CurrencyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPair.swift; sourceTree = "<group>"; };
 		C92BE8A82A1B240D0077774F /* Formatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+Ext.swift"; sourceTree = "<group>"; };
 		C92BE8AA2A1B242A0077774F /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		C92BE8AC2A1B24A30077774F /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		C92BE8AF2A1B40040077774F /* TextFieldTimerFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTimerFormatter.swift; sourceTree = "<group>"; };
 		C92BE8B32A1B44FC0077774F /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
-		C92BE8B52A1B5FCF0077774F /* TextFieldObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldObserver.swift; sourceTree = "<group>"; };
+		C92BE8B52A1B5FCF0077774F /* InvestmentCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentCounterViewModel.swift; sourceTree = "<group>"; };
 		C92BE8B82A1B75CC0077774F /* SelectPairScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPairScreen.swift; sourceTree = "<group>"; };
 		C92BE8BB2A1B8AE00077774F /* TextFieldInvestmentFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInvestmentFormatter.swift; sourceTree = "<group>"; };
+		C933DFB22A1F4CE500210177 /* KeyboardInputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputValidator.swift; sourceTree = "<group>"; };
 		C93421D42A18FFA30002DF6B /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		C94BA3172A1E4CDA007F2939 /* HTMLString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLString.swift; sourceTree = "<group>"; };
+		C952526E2A204BC0001E9C10 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C95252752A206998001E9C10 /* TimerCounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCounterViewModel.swift; sourceTree = "<group>"; };
 		C9D5DF102A19B24400D4921A /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		C9D5DF112A19B24400D4921A /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
 		C9D5DF122A19B24400D4921A /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -133,6 +148,9 @@
 		C9D5DF482A1A53D600D4921A /* TradeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeScreenViewModel.swift; sourceTree = "<group>"; };
 		C9D5DF4A2A1A56EC00D4921A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C9D5DF4C2A1A5AF600D4921A /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		C9EF55712A21D294000C409F /* TimerParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerParser.swift; sourceTree = "<group>"; };
+		C9FD75A42A1D79BF00A750D8 /* PairCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairCellViewModel.swift; sourceTree = "<group>"; };
+		C9FD75A82A1D9E4200A750D8 /* widget.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = widget.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +256,9 @@
 		C90931922A18999D00F882A4 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C952526D2A204BBC001E9C10 /* UserModel */,
+				C9FD75A32A1D79B900A750D8 /* PairCellViewModel */,
+				C90B7C442A1CFA7200A58471 /* CurrencyPair */,
 				C9D5DF422A1A1C7D00D4921A /* TopListItem */,
 				C9D5DF412A1A1C5C00D4921A /* TopListSectionItem */,
 				C9D5DF402A1A1C5200D4921A /* TopListCellItem */,
@@ -248,8 +269,10 @@
 		C90931942A1899B600F882A4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C9EF55702A21D284000C409F /* TimerParser */,
+				C933DFB12A1F4CD000210177 /* Validator */,
+				C94BA3162A1E4CC5007F2939 /* HTMLString */,
 				C92BE8B22A1B44F30077774F /* Keyboard */,
-				C92BE8AE2A1B3FDE0077774F /* Formatters */,
 				C90653D72A18F44B008DCA7F /* Extensions */,
 			);
 			path = Core;
@@ -289,7 +312,7 @@
 		C90931982A189A1900F882A4 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				C92BE8BA2A1B89400077774F /* Observers */,
+				C92BE8AE2A1B3FDE0077774F /* Formatters */,
 				C90653D42A18F3D9008DCA7F /* Colors */,
 				C909319C2A18AB0C00F882A4 /* Coordinator */,
 			);
@@ -457,6 +480,22 @@
 			path = MainTabBarViewController;
 			sourceTree = "<group>";
 		};
+		C90B7C412A1CFA2600A58471 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C90B7C422A1CFA3500A58471 /* SelectPairCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C90B7C442A1CFA7200A58471 /* CurrencyPair */ = {
+			isa = PBXGroup;
+			children = (
+				C90B7C452A1CFA7F00A58471 /* CurrencyPair.swift */,
+			);
+			path = CurrencyPair;
+			sourceTree = "<group>";
+		};
 		C92BE8AE2A1B3FDE0077774F /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,16 +517,68 @@
 			isa = PBXGroup;
 			children = (
 				C92BE8B82A1B75CC0077774F /* SelectPairScreen.swift */,
+				C90B7C412A1CFA2600A58471 /* Views */,
 			);
 			path = SelectPairScreen;
 			sourceTree = "<group>";
 		};
-		C92BE8BA2A1B89400077774F /* Observers */ = {
+		C92DDF7F2A1C713B00A200CA /* BalanceView */ = {
 			isa = PBXGroup;
 			children = (
-				C92BE8B52A1B5FCF0077774F /* TextFieldObserver.swift */,
+				C9D5DF462A1A2CAA00D4921A /* BalanceView.swift */,
 			);
-			path = Observers;
+			path = BalanceView;
+			sourceTree = "<group>";
+		};
+		C92DDF802A1C714600A200CA /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				C9D5DF4A2A1A56EC00D4921A /* CustomButton.swift */,
+			);
+			path = CustomButton;
+			sourceTree = "<group>";
+		};
+		C92DDF812A1C715200A200CA /* CounterView */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE8AC2A1B24A30077774F /* CounterView.swift */,
+				C95252742A20697F001E9C10 /* viewModels */,
+			);
+			path = CounterView;
+			sourceTree = "<group>";
+		};
+		C933DFB12A1F4CD000210177 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				C933DFB22A1F4CE500210177 /* KeyboardInputValidator.swift */,
+			);
+			path = Validator;
+			sourceTree = "<group>";
+		};
+		C94BA3162A1E4CC5007F2939 /* HTMLString */ = {
+			isa = PBXGroup;
+			children = (
+				C94BA3172A1E4CDA007F2939 /* HTMLString.swift */,
+				C9FD75A82A1D9E4200A750D8 /* widget.html */,
+			);
+			path = HTMLString;
+			sourceTree = "<group>";
+		};
+		C952526D2A204BBC001E9C10 /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				C952526E2A204BC0001E9C10 /* UserModel.swift */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		C95252742A20697F001E9C10 /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE8B52A1B5FCF0077774F /* InvestmentCounterViewModel.swift */,
+				C95252752A206998001E9C10 /* TimerCounterViewModel.swift */,
+			);
+			path = viewModels;
 			sourceTree = "<group>";
 		};
 		C9D5DF0F2A19B22D00D4921A /* Fonts */ = {
@@ -584,11 +675,27 @@
 		C9D5DF452A1A2C9300D4921A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C9D5DF462A1A2CAA00D4921A /* BalanceView.swift */,
-				C9D5DF4A2A1A56EC00D4921A /* CustomButton.swift */,
-				C92BE8AC2A1B24A30077774F /* CounterView.swift */,
+				C92DDF7F2A1C713B00A200CA /* BalanceView */,
+				C92DDF802A1C714600A200CA /* CustomButton */,
+				C92DDF812A1C715200A200CA /* CounterView */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C9EF55702A21D284000C409F /* TimerParser */ = {
+			isa = PBXGroup;
+			children = (
+				C9EF55712A21D294000C409F /* TimerParser.swift */,
+			);
+			path = TimerParser;
+			sourceTree = "<group>";
+		};
+		C9FD75A32A1D79B900A750D8 /* PairCellViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9FD75A42A1D79BF00A750D8 /* PairCellViewModel.swift */,
+			);
+			path = PairCellViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,6 +764,7 @@
 			files = (
 				C9D5DF1C2A19B24400D4921A /* Inter-Bold.ttf in Resources */,
 				C9D5DF1F2A19B24400D4921A /* Inter-Black.ttf in Resources */,
+				C9FD75A92A1D9E4200A750D8 /* widget.html in Resources */,
 				C909318A2A1897D100F882A4 /* LaunchScreen.storyboard in Resources */,
 				C90931872A1897D100F882A4 /* Assets.xcassets in Resources */,
 				C9D5DF1E2A19B24400D4921A /* Inter-ExtraLight.ttf in Resources */,
@@ -679,9 +787,11 @@
 				C90653CB2A18C560008DCA7F /* TradeScreen.swift in Sources */,
 				C92BE8AB2A1B242A0077774F /* Int+Ext.swift in Sources */,
 				C9D5DF2D2A19C8F300D4921A /* LayoutsFactory.swift in Sources */,
+				C95252762A206998001E9C10 /* TimerCounterViewModel.swift in Sources */,
 				C90653D62A18F3F0008DCA7F /* Color.swift in Sources */,
 				C90931AE2A18AB0C00F882A4 /* Router.swift in Sources */,
 				C9D5DF4B2A1A56EC00D4921A /* CustomButton.swift in Sources */,
+				C94BA3182A1E4CDA007F2939 /* HTMLString.swift in Sources */,
 				C9D5DF492A1A53D600D4921A /* TradeScreenViewModel.swift in Sources */,
 				C90931B82A18ADB700F882A4 /* UINavigationController+Ext.swift in Sources */,
 				C90931B02A18AB0C00F882A4 /* BaseCoordinator.swift in Sources */,
@@ -707,15 +817,21 @@
 				C9D5DF3B2A19F9A000D4921A /* Spacer.swift in Sources */,
 				C90931C72A18B5E000F882A4 /* TradeCoordinator.swift in Sources */,
 				C90653C82A18C4E9008DCA7F /* TopCoordinator.swift in Sources */,
+				C90B7C462A1CFA7F00A58471 /* CurrencyPair.swift in Sources */,
+				C9EF55722A21D294000C409F /* TimerParser.swift in Sources */,
 				C9D5DF272A19B9DC00D4921A /* AlertBuilder.swift in Sources */,
 				C90931C42A18B04500F882A4 /* TabBarRouter.swift in Sources */,
+				C9FD75A52A1D79BF00A750D8 /* PairCellViewModel.swift in Sources */,
 				C9D5DF342A19F17800D4921A /* UICollectionView+Ext.swift in Sources */,
 				C9D5DF232A19B3AC00D4921A /* UIFont+Ext.swift in Sources */,
 				C9D5DF302A19CA9900D4921A /* TopListViewModel.swift in Sources */,
 				C90931BE2A18AFDF00F882A4 /* TabBarCoordinator.swift in Sources */,
 				C90931AF2A18AB0C00F882A4 /* OnboardingCoordinator.swift in Sources */,
-				C92BE8B62A1B5FCF0077774F /* TextFieldObserver.swift in Sources */,
+				C92BE8B62A1B5FCF0077774F /* InvestmentCounterViewModel.swift in Sources */,
+				C90B7C432A1CFA3500A58471 /* SelectPairCell.swift in Sources */,
+				C952526F2A204BC0001E9C10 /* UserModel.swift in Sources */,
 				C9D5DF2A2A19C89A00D4921A /* TopList.swift in Sources */,
+				C933DFB32A1F4CE500210177 /* KeyboardInputValidator.swift in Sources */,
 				C9D5DF442A1A1C8500D4921A /* TopListItem.swift in Sources */,
 				C90931B32A18AB0C00F882A4 /* Routable.swift in Sources */,
 				C92BE8AD2A1B24A30077774F /* CounterView.swift in Sources */,
@@ -870,6 +986,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -900,6 +1017,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

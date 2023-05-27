@@ -14,7 +14,7 @@ enum Color {
     }
     enum Common {
         static let background = UIColor().hex(0x1C1F2D)
-        static let buttonRed = UIColor().hex(0xFE3D43)
+        static let red = UIColor().hex(0xFE3D43)
         static let darkGray = UIColor().hex(0x333749)
         static let lightGreen = UIColor().hex(0x35B972)
         static let lightGray = UIColor().hex(0x5B5A60)

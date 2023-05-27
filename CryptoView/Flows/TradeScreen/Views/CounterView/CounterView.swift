@@ -16,6 +16,7 @@ enum Counter {
 
 final class CounterView: UIView {
     
+    private var bag = [AnyCancellable]()
     var tapped = PassthroughSubject<Counter, Never>()
     
     private let titleLabel: UILabel = {
@@ -51,13 +52,19 @@ final class CounterView: UIView {
         return view
     }()
     
+    private let viewModel: CounterViewModelProtocol
+    
     init(
-        title: String
+        viewModel: CounterViewModelProtocol
     ) {
-        self.titleLabel.text = title
+        self.viewModel = viewModel
+        self.titleLabel.text = viewModel.title
+        textField.clearsOnInsertion = viewModel.clearsOnInsertion
         super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = viewModel
+        textField.addTarget(self, action: #selector(self.textDidChange), for: .editingChanged)
         setupView()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -79,12 +86,32 @@ final class CounterView: UIView {
 
 private extension CounterView {
     
+    @objc func textDidChange() {
+        viewModel.textDidChange(textField)
+    }
+    
+    func bind() {
+        viewModel.showBorder
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] toggle in
+                self?.layer.borderWidth = toggle ? 1.0 : 0.0
+            }.store(in: &bag)
+        
+        viewModel.newValue
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] text in
+                guard let self = self else { return }
+                self.textField.text = text
+                self.viewModel.textDidChange(self.textField)
+            }.store(in: &bag)
+    }
+    
     @objc func handleTapPlusButton() {
-        tapped.send(.add)
+        viewModel.handleCounterButtonTap(.add)
     }
     
     @objc func handleTapMinusButton() {
-        tapped.send(.subtract)
+        viewModel.handleCounterButtonTap(.subtract)
     }
     
     func setupView() {
@@ -117,5 +144,4 @@ private extension CounterView {
             make.bottom.equalToSuperview().inset(8.0)
         }
     }
-    
 }

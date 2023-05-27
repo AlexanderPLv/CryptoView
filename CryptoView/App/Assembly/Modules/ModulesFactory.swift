@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 protocol OnboardingBuilderProtocol {
     func buildOnboardingScreen() -> OnboardingScreen
@@ -13,7 +14,7 @@ protocol OnboardingBuilderProtocol {
 
 protocol TradeBuilderProtocol {
     func buildTradeScreen() -> TradeScreen
-    func buildSelectPairScreen() -> SelectPairScreen
+    func buildSelectPairScreen(selectedPair: CurrencyPair,delegate: PairSelectionDelegate) -> SelectPairScreen
 }
 
 protocol TopBuilderProtocol {
@@ -21,32 +22,34 @@ protocol TopBuilderProtocol {
 }
 
 final class ModulesFactory {
+    static let shared = ModulesFactory()
     
-    init() {
-        
-    }
+    private let webView: WKWebView = {
+        let webView = WKWebView()
+        webView.scrollView.isScrollEnabled = false
+        webView.backgroundColor = .clear
+        webView.isOpaque = false
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
+        webView.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
+        webView.underPageBackgroundColor = Color.Common.background
+        return webView
+    }()
     
-    class func build() -> ModulesFactory {
-        let factory = ModulesFactory()
-        return factory
-    }
+    private init() {}
+    
 }
 
 extension ModulesFactory: OnboardingBuilderProtocol {
     func buildOnboardingScreen() -> OnboardingScreen {
-        let controller = OnboardingScreen()
+        let controller = OnboardingScreen(webView: webView)
         return controller
     }
 }
 
 extension ModulesFactory: TradeBuilderProtocol {
     func buildTradeScreen() -> TradeScreen {
-        let timerFormatter = TimerFormatter()
-        let investmentFormatter = TextFieldInvestmentFormatter()
-        let timerObserver = TextFieldObserver(formatter: timerFormatter)
-        let investmentObserver = TextFieldObserver(formatter: investmentFormatter)
-        let viewModel = TradeScreenViewModel(timerObserver: timerObserver, investmentObserver: investmentObserver)
-        let screen = TradeScreen(viewModel: viewModel, timerObserver: timerObserver, investmentObserver: investmentObserver)
+        let viewModel = TradeScreenViewModel()
+        let screen = TradeScreen(viewModel: viewModel, webView: webView)
         screen.tabBarItem = UITabBarItem(
             title: nil,
             image: UIImage(named: "unselectTrade"),
@@ -55,8 +58,8 @@ extension ModulesFactory: TradeBuilderProtocol {
         return screen
     }
     
-    func buildSelectPairScreen() -> SelectPairScreen {
-        let screen = SelectPairScreen()
+    func buildSelectPairScreen(selectedPair: CurrencyPair,delegate: PairSelectionDelegate) -> SelectPairScreen {
+        let screen = SelectPairScreen(selectedPair: selectedPair, delegate: delegate)
         return screen
     }
 }

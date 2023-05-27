@@ -19,7 +19,7 @@ protocol CoordinatorFactoryProtocol {
 }
 
 final class CoordinatorFactory {
-    private lazy var modulesFactory = ModulesFactory.build()
+    private lazy var modulesFactory = ModulesFactory.shared
 }
  
 extension CoordinatorFactory: CoordinatorFactoryProtocol {

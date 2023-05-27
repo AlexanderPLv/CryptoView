@@ -1,0 +1,75 @@
+//
+//  HTMLString.swift
+//  CryptoView
+//
+//  Created by Alexander Pelevinov on 24.05.2023.
+//
+
+import Foundation
+
+enum HTML {
+    static func string(with pair: String) -> String {
+        let string = """
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div id="tradingview_6c77a"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                        <script type="text/javascript">
+                            new TradingView.widget(
+                                                   {
+                                                       "autosize": true,
+                                                       "symbol": "\(pair)",
+                                                       "interval": "60",
+                                                       "timezone": "Etc/UTC",
+                                                       "theme": "dark",
+                                                       "style": "1",
+                                                       "locale": "en",
+                                                       "toolbar_bg": "#f1f3f6",
+                                                       "enable_publishing": false,
+                                                       "hide_top_toolbar": true,
+                                                       "hide_legend": true,
+                                                       "allow_symbol_change": true,
+                                                       "save_image": false,
+                                                       "container_id": "tradingview_6c77a",
+                                                       "overrides": {
+                                                           "paneProperties.backgroundType": "solid",
+                                                           "paneProperties.background": "#1C1F2D",
+                                                           "paneProperties.vertGridProperties.color": "#474851",
+                                                           "paneProperties.horzGridProperties.color": "#474851",
+                                                           "mainSeriesProperties.candleStyle.upColor": "#35B972",
+                                                           "mainSeriesProperties.candleStyle.downColor": "#FE3D43",
+                                                           "mainSeriesProperties.candleStyle.borderUpColor": "#35B972",
+                                                           "mainSeriesProperties.candleStyle.borderDownColor": "#FE3D43",
+                                                           "mainSeriesProperties.candleStyle.wickUpColor": "#35B972",
+                                                           "mainSeriesProperties.candleStyle.wickDownColor": "#FE3D43",
+                                                           "scalesProperties.fontSize": 23,
+                                                           "scalesProperties.textColor": "#C1C2C8",
+                                                           "scalesProperties.lineColor": "#474851",
+                                                       },
+                                                       "enabled_features": [
+                                                                            "hide_left_toolbar_by_default",
+                                                                            "confirm_overwrite_if_chart_layout_with_name_exists",
+                                                                            "hideDateRanges",
+                                                                            "remove_library_container_border",
+                                                                            ],
+                                                                            "disabled_features": [
+                                                                                                  "property_pages",
+                                                                                                  "legend_widget",
+                                                                                                  "control_bar",
+                                                                                                  "timezone_menu",
+                                                                                                  "timeframes_toolbar",
+                                                                                                  "create_volume_indicator_by_default",
+                                                                                                  "left_toolbar",
+                                                                                                  "use_localstorage_for_settings",
+                                                                                                  ]
+                                                                                                  
+                                                   }
+                                                   );
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                    """
+        return string
+    }
+}

@@ -8,36 +8,32 @@
 import UIKit
 
 protocol TextFieldFormatter {
-    var placeholder: String { get }
-    func format(_ text: String) -> String
-    func format(_ text: String, with newValue: Int) -> Int
+    func format(_ text: String) -> String?
     func fillEndWithMask(_ string: String) -> String
+    func removeMask(_ text: String) -> String
 }
 
 final class TimerFormatter: TextFieldFormatter {
-    func format(_ text: String, with newValue: Int) -> Int {
-        return 0
+
+    private let mask = "  :  "
+    private let parser: TimerParser
+    
+    init(parser: TimerParser) {
+        self.parser = parser
     }
     
-    var placeholder = "00:01"
-    private let mask = "__:__"
-    
-    func updateValue(by counter: Counter) {
-        
-    }
-    
-    func format(_ text: String) -> String {
+    func format(_ text: String) -> String? {
         let numbers = text.components(
             separatedBy: CharacterSet.decimalDigits.inverted
         ).joined()
-        print(numbers)
+        
         var result = ""
         var index = numbers.startIndex
         for ch in mask {
             if index == numbers.endIndex {
                 break
             }
-            if ch == "_" {
+            if ch == " " {
                 result.append(numbers[index])
                 index = numbers.index(after: index)
             } else {
@@ -58,6 +54,10 @@ final class TimerFormatter: TextFieldFormatter {
             text.append(unicharString)
             count += 1
         }
+        return text
+    }
+    
+    func removeMask(_ text: String) -> String {
         return text
     }
 }
